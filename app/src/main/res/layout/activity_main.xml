@@ -112,6 +112,7 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="15sp"
+        />
 
     <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
