@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         sourceEdt=findViewById(R.id.idEdtSource);
         micIV=findViewById(R.id.idIVMic);
         translateBtn=findViewById(R.id.IdBtnTranslate);
-        translatedTV=findViewById(R.id.idTVTranslatedTV)
+        translatedTV=findViewById(R.id.idTVTranslatedTV);
 
 
     }
