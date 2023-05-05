@@ -122,6 +122,18 @@
         android:text="Translate"
         android:textAllCaps="false"
         />
+   <TextView
+       android:id="@+id/idTVTranslatedTV"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center"
+       android:layout_marginTop="38dp"
+       android:text="Translated"
+       android:textAlignment="center"
+       android:textAllCaps="false"
+       android:textColor="@color/yellow"
+       android:textSize="18sp"
+       />
 
 
 
