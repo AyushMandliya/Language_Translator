@@ -3,12 +3,15 @@ package com.example.languagetranslator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguage;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +20,14 @@ public class MainActivity extends AppCompatActivity {
     private ImageView micIV;
     private MaterialButton translateBtn;
     private TextView translatedTV;
+    String[] fromLanguages ={"from","English","Afrikaans","Arabic","Belarusian","Bulgarian","Bengali","Catalan","Czech"
+    ,"Welsh","Hindi","Urdu"};
+    String[] toLanguages ={"from","English","Afrikaans","Arabic","Belarusian","Bulgarian","Bengali","Catalan","Czech"
+            ,"Welsh","Hindi","Urdu"};
+    private static final int REQUEST_PERMISSION_CODE =1;
+    int languagecode,fromlanguageCode,toLanguageCode =0;
+
+
 
 
     @Override
@@ -29,7 +40,64 @@ public class MainActivity extends AppCompatActivity {
         micIV=findViewById(R.id.idIVMic);
         translateBtn=findViewById(R.id.IdBtnTranslate);
         translatedTV=findViewById(R.id.idTVTranslatedTV);
+        fromSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                fromlanguageCode=getLanguageCode(fromLanguages[position]);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+    //String[] toLanguages ={"from","English","Afrikaans","Arabic","Belarusian","Bulgarian","Bengali","Catalan","Czech"
+      //      ,"Welsh","Hindi","Urdu"};
+
+    public int getLanguageCode(String language){
+        int languageCode =0;
+        switch (language){
+            case "English":
+                languageCode = FirebaseTranslateLanguage.EN;
+                break;
+            case "Afrikaans":
+                languageCode = FirebaseTranslateLanguage.AF;
+                break;
+            case "Arabic":
+                languageCode = FirebaseTranslateLanguage.AR;
+                break;
+            case "Belarusian":
+                languageCode = FirebaseTranslateLanguage.BE;
+                break;
+            case "Bengali":
+                languageCode = FirebaseTranslateLanguage.BN;
+                break;
+            case "Catalan":
+                languageCode = FirebaseTranslateLanguage.CA;
+                break;
+            case "CZech":
+                languageCode = FirebaseTranslateLanguage.CS;
+                break;
+            case "Welsh":
+                languageCode = FirebaseTranslateLanguage.CY;
+                break;
+            case "Hindi":
+                languageCode = FirebaseTranslateLanguage.HI;
+                break;
+            case "Urdu":
+                languageCode = FirebaseTranslateLanguage.UR;
+
+                break;
+            default:
+                languageCode=0;
+
+
+
+        }
+        return languageCode;
 
     }
 }
