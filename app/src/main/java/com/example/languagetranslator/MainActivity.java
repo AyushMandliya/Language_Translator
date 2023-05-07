@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MainActivity.this, " " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Fail  to translate  " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -174,11 +174,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Fail to download language Model " +  e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
-
-
 
 
 
