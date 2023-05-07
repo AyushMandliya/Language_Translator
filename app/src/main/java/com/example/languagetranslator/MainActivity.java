@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -51,6 +52,22 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        ArrayAdapter fromAdapter = new ArrayAdapter(this,R.layout.spinner_item,fromLanguages);
+    fromAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    fromSpinner.setAdapter(fromAdapter);
+    toSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            toLanguageCode = getLanguageCode(toLanguages[position]);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    });
+
+
 
 
     }
