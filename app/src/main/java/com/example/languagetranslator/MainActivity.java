@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -35,16 +36,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fromSpinner=findViewById(R.id.idFromSpinner);
-        toSpinner=findViewById(R.id.idToSpinner);
-        sourceEdt=findViewById(R.id.idEdtSource);
-        micIV=findViewById(R.id.idIVMic);
-        translateBtn=findViewById(R.id.IdBtnTranslate);
-        translatedTV=findViewById(R.id.idTVTranslatedTV);
+        fromSpinner = findViewById(R.id.idFromSpinner);
+        toSpinner = findViewById(R.id.idToSpinner);
+        sourceEdt = findViewById(R.id.idEdtSource);
+        micIV = findViewById(R.id.idIVMic);
+        translateBtn = findViewById(R.id.IdBtnTranslate);
+        translatedTV = findViewById(R.id.idTVTranslatedTV);
         fromSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                fromlanguageCode=getLanguageCode(fromLanguages[position]);
+                fromlanguageCode = getLanguageCode(fromLanguages[position]);
             }
 
             @Override
@@ -52,25 +53,58 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        ArrayAdapter fromAdapter = new ArrayAdapter(this,R.layout.spinner_item,fromLanguages);
-    fromAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    fromSpinner.setAdapter(fromAdapter);
-    toSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            toLanguageCode = getLanguageCode(toLanguages[position]);
-        }
+        ArrayAdapter fromAdapter = new ArrayAdapter(this, R.layout.spinner_item, fromLanguages);
+        fromAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        fromSpinner.setAdapter(fromAdapter);
+        toSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                toLanguageCode = getLanguageCode(toLanguages[position]);
+            }
 
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-        }
-    });
+            }
+        });
 
+        ArrayAdapter toAdapter = new ArrayAdapter(this, R.layout.spinner_item, toLanguages);
 
+        toAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        toSpinner.setAdapter(toAdapter);
+        translateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                translatedTV.setText("");
+                if (sourceEdt.getText().toString().isEmpty()) {
+                    Toast.makeText(MainActivity.this, "please enter your text to translator", Toast.LENGTH_SHORT).show();
+                } else if (fromlanguageCode == 0) {
 
+                    Toast.makeText(MainActivity.this, "please select source language", Toast.LENGTH_SHORT).show();
+
+                } else if (toLanguageCode == 0) {
+                    Toast.makeText(MainActivity.this, "please select language to make translation ", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    translateText(fromlanguageCode,toLanguageCode,sourceEdt.getText().toString());
+                }
+
+            }
+        });
 
     }
+
+ private void  translateText(int fromLanguageCode,int toLanguageCode,String source){
+
+
+
+
+
+
+
+        }
+
+
     //String[] toLanguages ={"from","English","Afrikaans","Arabic","Belarusian","Bulgarian","Bengali","Catalan","Czech"
       //      ,"Welsh","Hindi","Urdu"};
 
