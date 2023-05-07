@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         translator.downloadModelIfNeeded(conditions).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                translatedTV.setText("Translating..");
+                translatedTV.setText("");
                 translator.translate(source).addOnSuccessListener(new OnSuccessListener<String>() {
                     @Override
                     public void onSuccess(String s) {
